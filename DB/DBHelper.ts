@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const DB_URL = "mongodb://likai:826012639l@10.248.189.85:27017/project_manager";
+const DB_URL = "mongodb://likai:826012639l@10.248.189.85:27017/common_api";
 
 // 创建连接
 mongoose.connect(DB_URL, {

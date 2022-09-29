@@ -1,12 +1,14 @@
 import { CONFIG } from "../config";
 import { IncomingMessage, ServerResponse } from "http";
-import upload from "./upload";
+import upload from "./uploadImage";
+import getImage from "./getImage";
 import formidable from "formidable";
 
 const { API_PREFIX } = CONFIG;
 
 const handle: Record<string, Function> = {
   "/upload": upload,
+  "/getimage": getImage,
 };
 
 export type Route = (
@@ -34,7 +36,7 @@ const route: Route = async (pathname, request, response) => {
       // TODO：处理 formiable 处理的场景
       // 上传文件
       if (shortUrl === "/upload") {
-        handle[shortUrl]({
+        await handle[shortUrl]({
           request,
           response,
         });
