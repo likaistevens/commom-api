@@ -9,6 +9,6 @@ yarn
 
 tsc
 
-pm2 stop api
+pm2 stop api || true
 pm2 start node ./dist/api.js
 
