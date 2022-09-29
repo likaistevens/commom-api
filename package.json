@@ -2,11 +2,11 @@
   "name": "common-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "api.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint-staged": "lint-staged",
-    "dev": "PORT=9500 nodemon ./index.ts",
+    "dev": "PORT=9500 nodemon ./api.ts",
     "prepare": "husky install"
   },
   "author": "",
