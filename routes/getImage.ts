@@ -1,9 +1,6 @@
 import { HandleProps } from "./type";
-import formidable from "formidable";
 import fs from "fs";
-import path from "path";
 import ImageModel from "../DB/model/Image";
-import md5 from "md5";
 import url from "url";
 
 export default async (props: HandleProps) => {

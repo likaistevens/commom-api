@@ -2,6 +2,8 @@ import { CONFIG } from "../config";
 import { IncomingMessage, ServerResponse } from "http";
 import upload from "./uploadImage";
 import getImage from "./getImage";
+import generateCatCard from "./generateCatCard";
+
 import formidable from "formidable";
 
 const { API_PREFIX } = CONFIG;
@@ -9,6 +11,7 @@ const { API_PREFIX } = CONFIG;
 const handle: Record<string, Function> = {
   "/upload": upload,
   "/getimage": getImage,
+  "/generateCatCard": generateCatCard,
 };
 
 export type Route = (
@@ -28,7 +31,7 @@ const route: Route = async (pathname, request, response) => {
     response.setHeader("Access-Control-Allow-Origin", origin);
     response.setHeader("Access-Control-Allow-Methods", "*");
     response.setHeader("Access-Control-Allow-Credentials", "true");
-    response.setHeader("Access-Control-Allow-Methods", "*");
+    response.setHeader("Access-Control-Allow-Headers", "*");
 
     if (request.method?.toLocaleLowerCase() === "options") {
       response.end();
