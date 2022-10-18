@@ -24,22 +24,12 @@ export default async (props: HandleProps) => {
     uploadDir: CONFIG.imageDir,
     keepExtensions: true,
   });
-  console.log("start parse :", request);
   form.parse(request, async function (error, fields, files) {
-    // console.log(error, fields, files);
-    console.log("parsing done", files);
+    console.log("parsing done", error, fields, files);
     const file = Array.isArray(files.file) ? files.file[0] : files.file;
 
     const localFile = fs.readFileSync(file.filepath);
     const fileMd5 = md5(localFile);
-    const ext = file.newFilename.match(/[a-z]{3,5}$/g)?.[0] || "png";
-    const newFilename = `${fileMd5}.${ext}`;
-    const newFilePath = file.filepath.replace(file.newFilename, newFilename);
-
-    console.log("rename file ");
-    console.log("old file : " + file.filepath);
-    console.log("new file : " + newFilePath);
-    fs.renameSync(file.filepath, newFilePath);
     const dbFile = await ImageModel.findOne({ id: fileMd5 });
 
     if (dbFile) {
@@ -47,6 +37,15 @@ export default async (props: HandleProps) => {
       response.writeHead(200);
       response.end(JSON.stringify(dbFile));
     } else {
+      const ext = file.newFilename.match(/[a-z]{3,5}$/g)?.[0] || "png";
+      const newFilename = `${fileMd5}.${ext}`;
+      const newFilePath = file.filepath.replace(file.newFilename, newFilename);
+
+      console.log("rename file ");
+      console.log("old file : " + file.filepath);
+      console.log("new file : " + newFilePath);
+      fs.renameSync(file.filepath, newFilePath);
+
       const res = await ImageModel.create({
         ...file,
         id: fileMd5,
