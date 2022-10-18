@@ -24,6 +24,7 @@ export default async (props: HandleProps) => {
     uploadDir: CONFIG.imageDir,
     keepExtensions: true,
   });
+  console.log("start parse :", request);
   form.parse(request, async function (error, fields, files) {
     // console.log(error, fields, files);
     console.log("parsing done", files);
