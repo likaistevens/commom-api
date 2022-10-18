@@ -4,6 +4,7 @@
 set -e
 
 echo "NODE_ENV=production\nBUILD_PATH='./dist'" > .env
+cat ../pwd.conf >> .env
 
 yarn
 

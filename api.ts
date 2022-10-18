@@ -1,10 +1,11 @@
-import http from "http";
 import dotenv from "dotenv";
+import http from "http";
 import url from "url";
-import { CONFIG } from "./config";
-import route from "./routes";
 
 dotenv.config();
+
+import { CONFIG } from "./config";
+import route from "./routes";
 
 const { PORT, API_PREFIX } = CONFIG;
 

@@ -1,7 +1,4 @@
 import path from "path";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 export const CONFIG = {
   PORT: parseInt(process.env.PORT || "9500", 10),

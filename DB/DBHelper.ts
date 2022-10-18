@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
-const DB_URL = "mongodb://likai:826012639l@10.248.189.85:27017/common_api";
+const usr = process.env.MONGODB_USER;
+const pwd = process.env.MONGODB_PASSWORD;
+const host = process.env.MONGODB_HOST;
+
+const DB_URL = `mongodb://${usr}:${pwd}@${host}:27017/project_manager`;
 
 // 创建连接
 mongoose.connect(DB_URL, {
@@ -10,7 +14,10 @@ mongoose.connect(DB_URL, {
 
 // 连接成功
 mongoose.connection.on("connected", () => {
-  console.log("Mongoose connection open to " + DB_URL);
+  console.log(
+    "Mongoose connection open to " +
+      `mongodb://${usr}@${host}:27017/project_manager`
+  );
 });
 
 // 连接异常
